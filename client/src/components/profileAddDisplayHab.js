@@ -26,8 +26,12 @@ var ProfileAddDisplayHab = React.createClass({ // main component
   },
 
   handleHabitSubmit: function(habit) { // this is fired from the render function on render function of this component
+    var dropdown = $('#newhabcat').val();
+    console.log('the value of the dropdown',dropdown);
     var habits = this.state.data;
     var newHabits = habits.concat([habit]);
+    console.log('the new habits',newHabits);
+    console.log('THE ONE HABIT',habit)
     this.setState({data: newHabits});
     $.ajax({
       url: '/api/habits',
@@ -132,7 +136,7 @@ var HabitForm = React.createClass({ // form to enter new habits
       <form className="habitForm" onSubmit={this.handleSubmit}>
       <input type="text" placeholder="Enter text" ref="habit" />
       <div>
-        <select name="Categories">
+        <select name="Categories" id="newhabcat">
         <option value="null">Please select a category for your new Habitude</option>
           <option value="Health">Health</option>
           <option value="Fitness">Fitness</option>
